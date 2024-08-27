@@ -1,0 +1,51 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
+
+
+.contests--contest {
+    padding: 10px;
+    background-color: var(--gray);
+    color: var(--blue);
+    border-radius: 8px;
+    margin: 10px;
+    border: 0.3rem solid rgb(88, 186, 235);
+}
+.content--contest {
+    font-size: 23px;
+    color: rgb(0, 0, 0);
+    padding: 2px;
+    text-align: left;
+}
+
+.cont:hover{
+    color: rgb(12, 0, 237);
+
+}
+
+#main--contest {
+    padding-top: 70px;
+    margin-top: 3rem;
+}
+#main--contest a {
+    text-decoration: none;
+    color: var(--blue);
+}
+
+.title--contest {
+    color: rgb(12, 0, 237);
+    font-size: 26px;
+    padding: 5px;
+    padding-left: 20px;
+    text-transform: uppercase;
+}
+
+@media only screen and (max-width: 1000px) {
+    #main--contest {
+        padding-top: 8px;
+    }
+    .content--contest {
+        font-size: 20px;
+    }
+    .title--contest {
+        font-size: 22px;
+    }
+}
