@@ -73,8 +73,8 @@
       align-items: center;
       gap: 0.625rem;
       border-radius: 0.375rem;
-      border: 2px solid rgb(85, 175, 220);
-      background: rgb(175, 216, 236);
+      border: 2px solid #55afdc;
+      background: #afd8ec;
       color: #000;
       font-family: "Pangea Trial";
       font-size: 1rem;
