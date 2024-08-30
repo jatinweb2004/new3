@@ -19,7 +19,7 @@ const Profile = () => {
   const fetchProblemDetails = async () => {
     try {
       const response = await fetch(
-        `https://new2-atbw.onrender.com/fetchProblem/${profiles.email}?status=${selectedStatus}`
+        `https://new2-atbw.onrender.com/api/v1/fetchProblem/${profiles.email}?status=${selectedStatus}`
       );
       if (response.ok) {
         const data = await response.json();
