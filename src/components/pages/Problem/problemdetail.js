@@ -25,7 +25,7 @@ const Problem = () => {
 
   useEffect(() => {
     axios
-      .get(`https://new2-atbw.onrender.com/profile/${user.uid}`)
+      .get(`https://new2-atbw.onrender.com/api/v1/profile/${user.uid}`)
       .then((Profile) => {
       
         setProfiles(Profile.data);
