@@ -89,7 +89,7 @@ const Problem = () => {
     const fetchComments = async () => {
       try {
         const response = await axios.get(
-          `https://new2-atbw.onrender.com/comments/${problemId}`
+          `https://new2-atbw.onrender.com/api/v1/comments/${problemId}`
         );
         setComments(response.data.comments);
 
