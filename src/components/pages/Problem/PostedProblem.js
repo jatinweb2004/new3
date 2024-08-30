@@ -17,7 +17,7 @@ const ProblemDetail = () => {
     // Fetch problem details using problem ID
     const fetchProblemDetail = async () => {
       try {
-        const response = await axios.get(`https://new2-atbw.onrender.com/Problem/${problemId}`);
+        const response = await axios.get(`https://new2-atbw.onrender.com/api/v1/Problem/${problemId}`);
         console.log(response);
         if (response.data.status === "success") {
           setProblems(response.data.data); // Set problems state to the array of problem data
