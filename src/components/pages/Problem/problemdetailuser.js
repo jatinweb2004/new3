@@ -21,7 +21,7 @@ const Problemuser = () => {
 
   useEffect(() => {
     axios
-      .get(`https://new2-atbw.onrender.com/profile/${user.uid}`)
+      .get(`https://new2-atbw.onrender.com/api/v1/profile/${user.uid}`)
       .then((Profile) => {
         console.log(Profile);
         setProfiles(Profile.data);
@@ -59,7 +59,7 @@ const Problemuser = () => {
       const fetchProfileDetails = async () => {
         try {
           const response = await axios.get(
-            `https://new2-atbw.onrender.com/ownerprofile/${problems[0].email}`
+            `https://new2-atbw.onrender.com/api/v1/ownerprofile/${problems[0].email}`
           );
 
           console.log(problems[0].email);
@@ -80,7 +80,7 @@ const Problemuser = () => {
     const fetchComments = async () => {
       try {
         const response = await axios.get(
-          `https://new2-atbw.onrender.com/comments/${problemId}`
+          `https://new2-atbw.onrender.com/api/v1/comments/${problemId}`
         );
         setComments(response.data.comments);
       } catch (error) {
@@ -92,7 +92,7 @@ const Problemuser = () => {
 
   const handleCommentSubmit = async () => {
     try {
-      const response = await axios.post("https://new2-atbw.onrender.com/comments", {
+      const response = await axios.post("https://new2-atbw.onrender.com/api/v1/comments", {
         problemId,
         userName: profiles.name, // Replace with actual username or fetch from authentication
         image: profiles.imageUrl,
@@ -119,7 +119,7 @@ const Problemuser = () => {
   const handleLikeClick = async () => {
     try {
       const response = await fetch(
-        `https://new2-atbw.onrender.com/problemslike/${problemId}/${user.uid}/like`,
+        `https://new2-atbw.onrender.com/api/v1/problemslike/${problemId}/${user.uid}/like`,
         { method: "POST" }
       );
       if (response.ok) {
