@@ -68,7 +68,7 @@ const Problem = () => {
       const fetchProfileDetails = async () => {
         try {
           const response = await axios.get(
-            `https://new2-atbw.onrender.com/ownerprofile/${problems[0].email}`
+            `https://new2-atbw.onrender.com/api/v1/ownerprofile/${problems[0].email}`
           );
 
           console.log(problems[0].email);
@@ -105,7 +105,7 @@ const Problem = () => {
 
   const handleCommentSubmit = async () => {
     try {
-      const response = await axios.post("https://new2-atbw.onrender.com/comments", {
+      const response = await axios.post("https://new2-atbw.onrender.com/api/v1/comments", {
         problemId,
         userName: profiles.name, // Replace with actual username or fetch from authentication
         image: profiles.imageUrl,
@@ -133,7 +133,7 @@ const Problem = () => {
   useEffect(() => {
     const fetchLikeStatus = async () => {
       try {
-        const response = await axios.get(`https://new2-atbw.onrender.com/problemslike/status/${problemId}/${user.uid}`);
+        const response = await axios.get(`https://new2-atbw.onrender.com/api/v1/problemslike/status/${problemId}/${user.uid}`);
         if (response.status === 200) {
           setLiked(response.data.liked);
           setTotalLikes(response.data.totalLikes);
@@ -150,7 +150,7 @@ const Problem = () => {
   
   const handleLikeClick = async () => {
     try {
-      const response = await axios.post(`https://new2-atbw.onrender.com/problemslike/${problemId}/${user.uid}/like`);
+      const response = await axios.post(`https://new2-atbw.onrender.com/api/v1/problemslike/${problemId}/${user.uid}/like`);
       if (response.status === 200) {
         const responseData = response.data;
         setLiked(responseData.liked);
@@ -213,7 +213,7 @@ const Problem = () => {
       console.log(requestBody);
 
       // Send POST request to the server
-      await axios.post("https://new2-atbw.onrender.com/send-collab-request", requestBody);
+      await axios.post("https://new2-atbw.onrender.com/api/v1/send-collab-request", requestBody);
       alert("Message sent successfully");
     } catch (error) {
       console.error("Error sending message:", error);
