@@ -41,7 +41,7 @@ const Problem = () => {
     const fetchProblemDetail = async () => {
       try {
         const response = await axios.get(
-          `https://new2-atbw.onrender.com/Problem/${problemId}`
+          `https://new2-atbw.onrender.com/api/v1/Problem/${problemId}`
         );
         if (response.data.status === "success") {
           setProblems(response.data.data); // Set problems state to the array of problem data
