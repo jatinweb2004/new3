@@ -5,7 +5,7 @@ import axios from 'axios';
 import ContinueProblem from './ContinueProblem';
 import ImageUpload from './problemimage'; // Import the ImageUpload component
 import { auth } from '../../../auth/firebase';
-const API_URI = 'https://new2-atbw.onrender.com';
+const API_URI = 'https://new2-atbw.onrender.com/api/v1';
 
 const PopupPage = ({ onClose, formData, setFormData, handleSubmit }) => {
   return (
