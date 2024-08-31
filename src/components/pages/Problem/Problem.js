@@ -7,7 +7,6 @@ import ImageUpload from './problemimage'; // Import the ImageUpload component
 import { auth } from '../../../auth/firebase';
 
 const PopupPage = ({ onClose, formData, setFormData, handleSubmit }) => {
-  const SERVER_URL = process.env.REACT_APP_SERVER_URL;
   return (
     <div className='popup-overlay'>
       <div className="popup">
@@ -23,6 +22,7 @@ const PopupPage = ({ onClose, formData, setFormData, handleSubmit }) => {
 };
 
 const Problem = () => {
+    const SERVER_URL = process.env.REACT_APP_SERVER_URL;
   const [user, setUser] = useState(null);
   const [problemId, setProblemId] = useState('');
   const [inputFields, setInputFields] = useState([]);
