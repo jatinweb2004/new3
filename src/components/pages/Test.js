@@ -7,9 +7,10 @@ function Test() {
   const params = new URLSearchParams(location.search);
   const receivedData = params.get('id');
   const [problem, setProblem] = useState([]);
+  const SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
   useEffect(() => {
-    axios.get(`https://new2-atbw.onrender.com/addProblem/?problemId=${receivedData}`)
+    axios.get(`${SERVER_URL}/addProblem/?problemId=${receivedData}`)
       .then(Problem => {
         setProblem(Problem.data);
       })

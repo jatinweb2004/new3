@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import './ContinueProblem.css';
 
 const ContinueProblem = ({ close, formData, setFormData, handleSubmit }) => {
+  const SERVER_URL = process.env.REACT_APP_SERVER_URL;
   
   const handlePublish = () => {
     handleSubmit && handleSubmit(); // Call the handleSubmit function only if it's defined

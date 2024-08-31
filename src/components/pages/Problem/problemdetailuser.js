@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 
 
 const Problemuser = () => {
+  const SERVER_URL = process.env.REACT_APP_SERVER_URL;
   const { problemId } = useParams(); // Extract problem ID from URL
   const [problems, setProblems] = useState([]); // Initialize problems state as an empty array
   const [comments, setComments] = useState([]);
@@ -21,7 +22,7 @@ const Problemuser = () => {
 
   useEffect(() => {
     axios
-      .get(`https://new2-atbw.onrender.com/profile/${user.uid}`)
+      .get(`${SERVER_URL}/profile/${user.uid}`)
       .then((Profile) => {
         console.log(Profile);
         setProfiles(Profile.data);
@@ -34,7 +35,7 @@ const Problemuser = () => {
     const fetchProblemDetail = async () => {
       try {
         const response = await axios.get(
-          `https://new2-atbw.onrender.com/Problem/${problemId}`
+          `${SERVER_URL}/Problem/${problemId}`
         );
         if (response.data.status === "success") {
           setProblems(response.data.data); // Set problems state to the array of problem data
@@ -59,7 +60,7 @@ const Problemuser = () => {
       const fetchProfileDetails = async () => {
         try {
           const response = await axios.get(
-            `https://new2-atbw.onrender.com/ownerprofile/${problems[0].email}`
+            `${SERVER_URL}/ownerprofile/${problems[0].email}`
           );
 
           console.log(problems[0].email);
@@ -80,7 +81,7 @@ const Problemuser = () => {
     const fetchComments = async () => {
       try {
         const response = await axios.get(
-          `https://new2-atbw.onrender.com/comments/${problemId}`
+          `${SERVER_URL}/comments/${problemId}`
         );
         setComments(response.data.comments);
       } catch (error) {
@@ -92,7 +93,7 @@ const Problemuser = () => {
 
   const handleCommentSubmit = async () => {
     try {
-      const response = await axios.post("https://new2-atbw.onrender.com/comments", {
+      const response = await axios.post(`${SERVER_URL}/comments`, {
         problemId,
         userName: profiles.name, // Replace with actual username or fetch from authentication
         image: profiles.imageUrl,
@@ -119,7 +120,7 @@ const Problemuser = () => {
   const handleLikeClick = async () => {
     try {
       const response = await fetch(
-        `https://new2-atbw.onrender.com/problemslike/${problemId}/${user.uid}/like`,
+        `${SERVER_URL}/problemslike/${problemId}/${user.uid}/like`,
         { method: "POST" }
       );
       if (response.ok) {

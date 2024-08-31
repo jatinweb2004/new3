@@ -7,6 +7,7 @@ import Navbar from "../../header/Navbar";
 import { useParams } from "react-router-dom";
 
 const Profile = () => {
+  const SERVER_URL = process.env.REACT_APP_SERVER_URL;
   const [selectedStatus, setSelectedStatus] = useState("bookmarked"); // Initialize selectedStatus with "bookmark"
   const [problems, setProblems] = useState([]);
   const storedUserData = localStorage.getItem("user");
@@ -19,7 +20,7 @@ const Profile = () => {
   const fetchProblemDetails = async () => {
     try {
       const response = await fetch(
-        `https://new2-atbw.onrender.com/fetchProblem/${profiles.email}?status=${selectedStatus}`
+        `${SERVER_URL}/fetchProblem/${profiles.email}?status=${selectedStatus}`
       );
       if (response.ok) {
         const data = await response.json();
@@ -35,7 +36,7 @@ const Profile = () => {
   useEffect(() => {
     // Fetch user profile data when the component mounts
     axios
-      .get(`https://new2-atbw.onrender.com/profile/${userid}`)
+      .get(`${SERVER_URL}/profile/${userid}`)
       .then((Profile) => {
         console.log(Profile);
         setProfiles(Profile.data);

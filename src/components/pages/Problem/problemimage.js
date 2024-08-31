@@ -6,6 +6,7 @@ import upload_img from '../../assets/upload_img.png'
 import './problemimage.css'
 
 const ImageUpload = () => {
+  const SERVER_URL = process.env.REACT_APP_SERVER_URL;
   const [user, setUser] = useState(null); // State to store user data
   const [image, setImage] = useState(null);
   const [url, setUrl] = useState('');

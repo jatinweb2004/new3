@@ -10,6 +10,8 @@ import Review from "./Review";
 import thumbsUp from "../../assets/thumbs-up.png";
 
 const Problem = () => {
+
+  const SERVER_URL = process.env.REACT_APP_SERVER_URL;
   const { problemId } = useParams(); // Extract problem ID from URL
   const [problems, setProblems] = useState([]); // Initialize problems state as an empty array
   const [comments, setComments] = useState([]);
@@ -25,7 +27,7 @@ const Problem = () => {
 
   useEffect(() => {
     axios
-      .get(`https://new2-atbw.onrender.com/profile/${user.uid}`)
+      .get(`${SERVER_URL}/profile/${user.uid}`)
       .then((Profile) => {
       
         setProfiles(Profile.data);
@@ -41,7 +43,7 @@ const Problem = () => {
     const fetchProblemDetail = async () => {
       try {
         const response = await axios.get(
-          `https://new2-atbw.onrender.com/Problem/${problemId}`
+          `${SERVER_URL}/Problem/${problemId}`
         );
         if (response.data.status === "success") {
           setProblems(response.data.data); // Set problems state to the array of problem data
@@ -68,7 +70,7 @@ const Problem = () => {
       const fetchProfileDetails = async () => {
         try {
           const response = await axios.get(
-            `https://new2-atbw.onrender.com/ownerprofile/${problems[0].email}`
+            `${SERVER_URL}/ownerprofile/${problems[0].email}`
           );
 
           console.log(problems[0].email);
@@ -89,7 +91,7 @@ const Problem = () => {
     const fetchComments = async () => {
       try {
         const response = await axios.get(
-          `https://new2-atbw.onrender.com/comments/${problemId}`
+          `${SERVER_URL}/comments/${problemId}`
         );
         setComments(response.data.comments);
 
@@ -105,7 +107,7 @@ const Problem = () => {
 
   const handleCommentSubmit = async () => {
     try {
-      const response = await axios.post("https://new2-atbw.onrender.com/comments", {
+      const response = await axios.post(`${SERVER_URL}/comments`, {
         problemId,
         userName: profiles.name, // Replace with actual username or fetch from authentication
         image: profiles.imageUrl,
@@ -133,7 +135,7 @@ const Problem = () => {
   useEffect(() => {
     const fetchLikeStatus = async () => {
       try {
-        const response = await axios.get(`https://new2-atbw.onrender.com/problemslike/status/${problemId}/${user.uid}`);
+        const response = await axios.get(`${SERVER_URL}/problemslike/status/${problemId}/${user.uid}`);
         if (response.status === 200) {
           setLiked(response.data.liked);
           setTotalLikes(response.data.totalLikes);
@@ -150,7 +152,7 @@ const Problem = () => {
   
   const handleLikeClick = async () => {
     try {
-      const response = await axios.post(`https://new2-atbw.onrender.com/problemslike/${problemId}/${user.uid}/like`);
+      const response = await axios.post(`${SERVER_URL}/problemslike/${problemId}/${user.uid}/like`);
       if (response.status === 200) {
         const responseData = response.data;
         setLiked(responseData.liked);
@@ -213,7 +215,7 @@ const Problem = () => {
       console.log(requestBody);
 
       // Send POST request to the server
-      await axios.post("https://new2-atbw.onrender.com/send-collab-request", requestBody);
+      await axios.post(`${SERVER_URL}/send-collab-request`, requestBody);
       alert("Message sent successfully");
     } catch (error) {
       console.error("Error sending message:", error);

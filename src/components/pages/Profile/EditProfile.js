@@ -83,6 +83,8 @@ function EditProfile() {
     );
   };
 
+  const SERVER_URL = process.env.REACT_APP_SERVER_URL;
+
   const handleInput = (e) => {
     const name = e.target.name;
     const value = e.target.value;
@@ -115,7 +117,7 @@ function EditProfile() {
 
     try {
       const response = await fetch(
-        "https://new2-atbw.onrender.com/profileModel",
+        `${SERVER_URL}/profileModel`,
         {
           method: "POST",
           headers: {

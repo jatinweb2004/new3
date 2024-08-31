@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import {  auth } from "../../../auth/firebase";
 
 function Sidebar() {
+  const SERVER_URL = process.env.REACT_APP_SERVER_URL;
   const [profiles, setProfiles] = useState(null); // Initialize as null
   const storedUserData = localStorage.getItem('user');
   const { userid } = useParams(); // Extract userid from URL
@@ -31,7 +32,7 @@ function Sidebar() {
   }, []);
 
   useEffect(() => {
-    axios.get(`https://new2-atbw.onrender.com/profile/${userid}`)
+    axios.get(`${SERVER_URL}/profile/${userid}`)
       .then(response => {
         console.log(response);
         setProfiles(response.data);

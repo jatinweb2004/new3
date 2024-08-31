@@ -217,6 +217,7 @@ import axios from 'axios';
 
 
 const OpenQueries = () => {
+    const SERVER_URL = process.env.REACT_APP_SERVER_URL;
     const location = useLocation();
     const params = new URLSearchParams(location.search);
     const id = params.get('id');
@@ -244,7 +245,7 @@ const OpenQueries = () => {
 
     const fetchDetailQuery = async (postId) => {
         try {
-            const response = await axios.get(`https://new2-atbw.onrender.com/getdetailquerybyid/${postId}`);
+            const response = await axios.get(`${SERVER_URL}/getdetailquerybyid/${postId}`);
             if (response.status === 200) {
                 setDetailQuery(response.data);
             } else {
@@ -257,7 +258,7 @@ const OpenQueries = () => {
 
     const fetchProfile = async (userId) => {
         try {
-            const response = await axios.get(`https://new2-atbw.onrender.com/profile/${userId}`);
+            const response = await axios.get(`${SERVER_URL}/profile/${userId}`);
             setProfiles(response.data);
         } catch (error) {
             console.error('Error fetching profile:', error.message);
@@ -266,7 +267,7 @@ const OpenQueries = () => {
 
     const fetchComments = async (queryId) => {
         try {
-            const response = await axios.get(`https://new2-atbw.onrender.com/querycomments/${queryId}`);
+            const response = await axios.get(`${SERVER_URL}/querycomments/${queryId}`);
             setComments(response.data.comments);
         } catch (error) {
             console.error('Error fetching comments:', error.message);
@@ -276,7 +277,7 @@ const OpenQueries = () => {
     const handleCommentSubmit = async () => {
         if (newComment.trim()) {
             try {
-                const response = await axios.post("https://new2-atbw.onrender.com/querycomments", {
+                const response = await axios.post(`${SERVER_URL}/querycomments`, {
                     queryId: id,
                     userName: profiles.name,
                     image: profiles.imageUrl,
@@ -305,7 +306,7 @@ const OpenQueries = () => {
         async function fetchMyQueries() {
           try {
            
-            const response = await axios.get(`https://new2-atbw.onrender.com/getreatedqueries/${detailQuery.category}`);
+            const response = await axios.get(`${SERVER_URL}/getreatedqueries/${detailQuery.category}`);
             console.log(response);
             
             

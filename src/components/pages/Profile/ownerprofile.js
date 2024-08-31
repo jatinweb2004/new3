@@ -5,6 +5,7 @@ import axios from "axios";
 import Navbar from "../../header/Navbar";
 
 const Profile = () => {
+  const SERVER_URL = process.env.REACT_APP_SERVER_URL;
   const [selectedStatus, setSelectedStatus] = useState("bookmark"); // Initialize selectedStatus with "bookmark"
   const [problems, setProblems] = useState([]);
   const storedUserData = localStorage.getItem('user');
@@ -12,7 +13,7 @@ const Profile = () => {
 
   const fetchProblemDetails = async () => {
     try {
-      const response = await fetch(`https://new2-atbw.onrender.com/fetchProblem/${user.email}?status=${selectedStatus}`);
+      const response = await fetch(`${SERVER_URL}/fetchProblem/${user.email}?status=${selectedStatus}`);
       if (response.ok) {
         const data = await response.json();
         setProblems(data.data);

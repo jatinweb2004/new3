@@ -14,11 +14,11 @@ function AskQuery(props) {
 
 
     
-   
+    const SERVER_URL = process.env.REACT_APP_SERVER_URL;
     
 
   useEffect(() => {
-    axios.get(`https://new2-atbw.onrender.com/profile/${user.uid}`)
+    axios.get(`${SERVER_URL}/profile/${user.uid}`)
       .then(Profile => {
 
         console.log(Profile);
@@ -35,7 +35,7 @@ function AskQuery(props) {
         if (user) {
             if (ques && desc) {
                 try {
-                    const res = await axios.post('https://new2-atbw.onrender.com/addPost', {
+                    const res = await axios.post(`${SERVER_URL}/api/addPost`, {
                         authorEmail: profiles.email,
                         authorName: profiles.name,
                         autherimage: profiles.imageUrl,

@@ -7,10 +7,11 @@ function SearchResult() {
   const params = new URLSearchParams(location.search);
   const receivedData = params.get("target");
   const [searchResult, setsearchResult] = useState([]);
+  const SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
   useEffect(() => {
     axios
-      .get(`https://new2-atbw.onrender.com/searchProblems?target=${receivedData}`)
+      .get(`${SERVER_URL}/searchProblems?target=${receivedData}`)
       .then((response) => {
         // console.log(response.data)
         setsearchResult(response.data.data);

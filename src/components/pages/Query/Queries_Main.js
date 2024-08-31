@@ -82,6 +82,7 @@ import './Queries_Main.css';
 import axios from 'axios';
 
 function Queries_Main(props) {
+    const SERVER_URL = process.env.REACT_APP_SERVER_URL;
     const [allQueries, setAllQueries] = useState([]);
     const [filteredQueries, setFilteredQueries] = useState([]);
     const [followingUsers, setFollowingUsers] = useState([]);
@@ -91,7 +92,7 @@ function Queries_Main(props) {
 
     useEffect(() => {
         // Fetch all posts from the API
-        axios.get('https://new2-atbw.onrender.com/posts')
+        axios.get(`${SERVER_URL}/posts`)
             .then(response => {
                 setAllQueries(response.data);
                 setFilteredQueries(response.data); // Initially show all queries
@@ -101,7 +102,7 @@ function Queries_Main(props) {
             });
 
         // Fetch the list of users that the current user is following
-        axios.get(`https://new2-atbw.onrender.com/following/${user.email}`)
+        axios.get(`${SERVER_URL}/following/${user.email}`)
         .then(response => {
             setFollowingUsers(response.data);
             console.log(followingUsers);

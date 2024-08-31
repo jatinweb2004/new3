@@ -9,6 +9,7 @@ import axios from "axios";
 import { useParams } from "react-router-dom"; // Import useParams to extract parameters
 
 const ProblemDetail = () => {
+  const SERVER_URL = process.env.REACT_APP_SERVER_URL;
   const { problemId } = useParams(); // Extract problem ID from URL
   
   const [problems, setProblems] = useState([]); // Initialize problems state as an empty array
@@ -17,7 +18,7 @@ const ProblemDetail = () => {
     // Fetch problem details using problem ID
     const fetchProblemDetail = async () => {
       try {
-        const response = await axios.get(`https://new2-atbw.onrender.com/Problem/${problemId}`);
+        const response = await axios.get(`${SERVER_URL}/Problem/${problemId}`);
         console.log(response);
         if (response.data.status === "success") {
           setProblems(response.data.data); // Set problems state to the array of problem data

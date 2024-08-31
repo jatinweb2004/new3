@@ -107,6 +107,7 @@ import axios from 'axios';
 import './RHS_Queries.css';
 
 function RHS_Queries(props) {
+  const SERVER_URL = process.env.REACT_APP_SERVER_URL;
   const [ShowMy_Queries, setShowMy_Queries] = useState(true);
   const [myQueries, setMyQueries] = useState([]);
   useEffect(() => {
@@ -118,7 +119,7 @@ function RHS_Queries(props) {
           return;
         }
         const user = JSON.parse(storedUserData);
-        const response = await axios.get(`https://new2-atbw.onrender.com/getqueries/${user.email}`);
+        const response = await axios.get(`${SERVER_URL}/getqueries/${user.email}`);
         
         // Check if the response status is 'success' and if it contains the 'queries' array
         if (response.data.status === 'success' && Array.isArray(response.data.queries)) {

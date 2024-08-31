@@ -8,6 +8,8 @@ import './Queries.css'
 
 function Queries() {
 
+  const SERVER_URL = process.env.REACT_APP_SERVER_URL;
+
   const [ShowPopUp_Queries,setShowPopUp_Queries] = useState(true)
 
   const [ShowOpenQuery,setShowOpenQuery]= useState(false)

@@ -5,9 +5,9 @@ import axios from 'axios';
 import ContinueProblem from './ContinueProblem';
 import ImageUpload from './problemimage'; // Import the ImageUpload component
 import { auth } from '../../../auth/firebase';
-const API_URI = 'https://new2-atbw.onrender.com';
 
 const PopupPage = ({ onClose, formData, setFormData, handleSubmit }) => {
+  const SERVER_URL = process.env.REACT_APP_SERVER_URL;
   return (
     <div className='popup-overlay'>
       <div className="popup">
@@ -60,7 +60,7 @@ const Problem = () => {
 
   const uploadFile = async (data) => {
     try {
-      const response = await axios.post(`${API_URI}/upload`, data);
+      const response = await axios.post(`${SERVER_URL}/upload`, data);
       console.log("response is:", response)
       return response.data;
     } catch (error) {
@@ -170,7 +170,7 @@ const Problem = () => {
   
       console.log('Combined Form Data:', requestData);
   
-      const response = await fetch('https://new2-atbw.onrender.com/saveProblem', {
+      const response = await fetch(`${SERVER_URL}/saveProblem`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
