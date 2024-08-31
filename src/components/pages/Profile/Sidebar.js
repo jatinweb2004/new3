@@ -33,6 +33,7 @@ function Sidebar() {
 
   useEffect(() => {
     axios.get(`${SERVER_URL}/profile/${userid}`)
+    axios.get(`https://new2-atbw.onrender.com/api/v1/profile/${userid}`)
       .then(response => {
         console.log(response);
         setProfiles(response.data);
